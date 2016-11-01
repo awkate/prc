@@ -16,7 +16,29 @@ import java.sql.*;
                 //データベースに接続
                 Connection con = DriverManager.getConnection(url,user,pass);
 
+                Statement stmt = con.createStatement();
+
+                String Sql1 = "select * from `user`";
+
+                ResultSet rs = stmt.executeQuery(Sql1);
+
+                System.out.println("-----------------------------");
+
+                while(rs.next()) {
+                    String UserName = rs.getString("user_name");
+                    String PassWord = rs.getString("password");
+                    String created_at = rs.getString("created_at");
+                    System.out.print(UserName + "\t");
+                    System.out.println(PassWord + "\t");
+                    System.out.println(created_at + "\t");
+                }
+
+                System.out.println("-----------------------------");
+
                 System.out.println("接続成功");
+
+
+
 
                 //データベースを切断
                 con.close();
